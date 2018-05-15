@@ -33,6 +33,17 @@ func (f Filestore) SaveWorkspace(workspace models.Workspace) (err error){
 	return
 }
 
-func (f Filestore) ListWorkspace() []string{
-	return []string{}
+func (f Filestore) ListWorkspace() ([]string, error){
+
+	files, err := ioutil.ReadDir(f.Path + "/")
+	if err != nil {
+		return nil, err
+	}
+
+	var names []string
+	for _, f := range files {
+		names = append(names, f.Name())
+	}
+
+	return names, nil
 }

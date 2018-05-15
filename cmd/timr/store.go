@@ -9,7 +9,7 @@ import (
 type Store interface {
 	LoadWorkspace(workspace string) (models.Workspace, error)
 	SaveWorkspace(workspace models.Workspace) (error)
-    ListWorkspace() []string
+    ListWorkspace() ([]string, error)
 }
 
 
